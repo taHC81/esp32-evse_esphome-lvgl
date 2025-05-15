@@ -19,6 +19,7 @@ What makes this a good choice is:
 - has capacitive touch screen
 - it runs an ESP32-S3
 - has a considerable number of additional free GPIOs
+- has a speaker output, possible to play audible warnings
 - way less expensive than Nextion
 
 ![Screen](images/esp32-evse_esphome-lvgl_charging.png) ![Screen](images/esp32-evse_esphome-lvgl_session.png)
