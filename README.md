@@ -25,4 +25,15 @@ What makes this a good choice is:
 ![Screen](images/esp32-evse_esphome-lvgl_settings.png) ![Screen](images/esp32-evse_esphome-lvgl_info-status.png)
 ![Screen](images/esp32-evse_esphome-lvgl_info-about.png) ![Screen](images/esp32-evse_esphome-lvgl_info-display.png)
 
+## Installation
 
+If you're not familiar yet with ESPHome, check out their [Getting Started guide](https://esphome.io/guides/getting_started_hassio).
+Place the ready-made _esp32-evse_esphome-lvgl_display.yaml_ configuration file from this repo in ESPHome's config directory. Create your own `secrets.yaml` file in the same directory with your own data:
+```yaml
+wifi_ssid: YOUR_WIFI_SSID
+wifi_password: YOUR_WIFI_KEY
+ota_password: CHOOSE_A_PASSWORD
+encryption_key: GENERATE_A_KEY
+```
+If you look at the configuartion file, you'll notice that the encryption key is required by Home Assistant API. [See the doc](https://esphome.io/components/api.html) how to generate an encryption string manually.
+_Note:_ It's not mandatory to use Home Assistant. If you don't use it, remove the entire `api:` key from the configuration, to avoid periodic self-reboot of the display waiting for it to connect.
