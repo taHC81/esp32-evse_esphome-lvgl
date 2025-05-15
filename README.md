@@ -40,4 +40,4 @@ _Note:_ It's not mandatory to use Home Assistant. If you don't use it, remove th
 
 In ESPHome Dashboard click the 3-dots icon corresponding to the configuration YAML file and choose _Install_ > _Manual download_. Let it do it's thing, and at the end it should prompt you to save a `.bin` file which you can flash to your device [in a number of ways](https://esphome.io/guides/faq.html#how-do-i-install-esphome-onto-my-device). _Guition JC3248w535_ display can be connected to the PC directly with an USB-C cable, can be flashed through it's built-in UART (just keep the BOOT button pressed while pluggig it in to enter bootloader mode).
 
-
+After initial flashing, any future changes can be uploaded wirelessly, no need to physically access the screen anymore.
