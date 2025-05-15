@@ -1,5 +1,5 @@
 # esp32-evse_esphome-lvgl
-HMI for ESP32-EVSE based on ESPHome and LVGL
+## HMI for ESP32-EVSE based on ESPHome and LVGL
 
 This is a replacement Human-Machine Interface for the Nextion screen of the excellent [ESP32-EVSE project by Miroslav Dzúrik](https://github.com/dzurikmiroslav/esp32-evse).
 It is a plug and play replacement, as it relies on the original Nextion protocol implemented by the author. _Note:_ It doesn't implement the entire Nextion protocol, just the subset required by the EVSE.
@@ -23,6 +23,8 @@ What makes this a good choice is:
 - way less expensive than Nextion
 
 Any other ESPHome supported graphical display could be used, the config file needs to be adjusted accordingly. If the resolution differs, placement of the widgets, font sizes may need correction too.
+
+## Screenshots
 
 ![Screen](images/esp32-evse_esphome-lvgl_charging.png) ![Screen](images/esp32-evse_esphome-lvgl_session.png)
 ![Screen](images/esp32-evse_esphome-lvgl_settings.png) ![Screen](images/esp32-evse_esphome-lvgl_info-status.png)
