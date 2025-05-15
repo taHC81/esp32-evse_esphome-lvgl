@@ -12,7 +12,7 @@ ESPHome [supports](https://esphome.io/components/lvgl/) LVGL graphics library. U
 - has Bluetooth and with it you could pair with your car and implement additional related features (eg open charging flap automatically, poll battery status, temperature, etc., which wouldn't have to interfere with EVSE board at all)
 - easier to make own Dynamic Load Management through HA or other ESPHome components (eg use data from other meters in various ways; freely implement DLM logic either in HA or in ESPHome based on any available data soruces)
 
-The device consists of any graphical display with touch screen supported by [ESPHome](https://esphome.io/components/#display-hardware-platforms). The example file _esp32-evse_esphome-lvgl_display.yaml_ contains working configuration for the Guition JC3248w535 display, which can be connected directly to ESP32-EVSE board, from the 4-pin JST 1.24 connector located near to the USB-C socket. The pins are 5V, TX and RX at 3.3v and GND.
+The device consists of any graphical display with touch screen supported by [ESPHome](https://esphome.io/components/#display-hardware-platforms). The example file _esp32-evse_esphome-lvgl_display.yaml_ contains working configuration for the _Guition JC3248w535_ display, which can be connected directly to ESP32-EVSE board, from the 4-pin JST 1.24 connector located near to the USB-C socket. The pins are 5V, TX and RX at 3.3v and GND.
 What makes this a good choice is:
 - has a pretty nice case that can be mounted on a box which has `esp32-evse` inside
 - has resolution of 480*320
@@ -27,7 +27,7 @@ What makes this a good choice is:
 
 ## Installation
 
-If you're not familiar yet with ESPHome, check out their [Getting Started guide](https://esphome.io/guides/getting_started_hassio).
+If you're not familiar yet with ESPHome, check out their [Getting Started guide](https://esphome.io/guides/getting_started_hassio). I recommend to use their Dashboard.
 Place the ready-made _esp32-evse_esphome-lvgl_display.yaml_ configuration file from this repo in ESPHome's config directory. Create your own `secrets.yaml` file in the same directory with your own data:
 ```yaml
 wifi_ssid: YOUR_WIFI_SSID
@@ -37,3 +37,7 @@ encryption_key: GENERATE_A_KEY
 ```
 If you look at the configuartion file, you'll notice that the encryption key is required by Home Assistant API. [See the doc](https://esphome.io/components/api.html) how to generate an encryption string manually.
 _Note:_ It's not mandatory to use Home Assistant. If you don't use it, remove the entire `api:` key from the configuration, to avoid periodic self-reboot of the display waiting for it to connect.
+
+In ESPHome Dashboard click the 3-dots icon corresponding to the configuration YAML file and choose _Install_ > _Manual download_. Let it do it's thing, and at the end it should prompt you to save a `.bin` file which you can flash to your device [min a number of ways](https://esphome.io/guides/faq.html#how-do-i-install-esphome-onto-my-device). _Guition JC3248w535_ display can be connected to the PC directly with an USB-C cable, can be flashed through it's built-in UART (just keep the BOOT button pressed while pluggig it in to enter bootloader mode).
+
+
