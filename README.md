@@ -22,6 +22,8 @@ What makes this a good choice is:
 - has a speaker output, possible to play audible warnings
 - way less expensive than Nextion
 
+Any other ESPHome supported graphical display could be used, the config file needs to be adjusted accordingly. If the resolution differs, placement of the widgets, font sizes may need correction too.
+
 ![Screen](images/esp32-evse_esphome-lvgl_charging.png) ![Screen](images/esp32-evse_esphome-lvgl_session.png)
 ![Screen](images/esp32-evse_esphome-lvgl_settings.png) ![Screen](images/esp32-evse_esphome-lvgl_info-status.png)
 ![Screen](images/esp32-evse_esphome-lvgl_info-about.png) ![Screen](images/esp32-evse_esphome-lvgl_info-display.png)
