@@ -656,7 +656,11 @@ binary_sensor:
     filters:
       - delayed_on: 1s
     on_press:
-      - lvgl.widget.show: lvgl_authorize_popup_window
+      - if:
+          condition:
+            lambda: 'return id(evse_error_code).state = 0;'
+          then:
+            - lvgl.widget.show: lvgl_authorize_popup_window
     on_release:
       - lvgl.widget.hide: lvgl_authorize_popup_window
     
