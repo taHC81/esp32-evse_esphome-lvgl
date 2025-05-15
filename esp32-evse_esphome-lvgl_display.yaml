@@ -654,7 +654,7 @@ binary_sensor:
     name: ${friendly_name_evse} Pending authorization
     id: evse_pendauth
     filters:
-      - delayed_on: 100ms
+      - delayed_on: 1s
     on_press:
       - lvgl.widget.show: lvgl_authorize_popup_window
     on_release:
@@ -1107,6 +1107,7 @@ lvgl:
                           text_font: montserrat_22
                     on_press:
                       - button.press: evse_auhorize_charging
+                      - lvgl.widget.hide: lvgl_authorize_popup_window
       - obj:
           id: lvgl_mains_popup_window
           hidden: true
