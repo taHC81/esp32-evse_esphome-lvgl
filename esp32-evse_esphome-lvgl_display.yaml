@@ -337,6 +337,17 @@ sensor:
             };
             return format_duration(total);
 
+  - platform: wifi_signal 
+    name: WiFi jelerősség
+    id: wifi_signal_db
+    entity_category: "diagnostic"
+    on_value:
+      - lvgl.label.update:
+          id: lvgl_label_info_disp_wifi_signal_db
+          text:
+            format: "%.0f dBm"
+            args: [ 'x' ]
+
   - platform: debug
     free:
       name: "${friendly_name} Heap Free"
@@ -650,6 +661,14 @@ sensor:
             args: [ 'x' ]
 
 binary_sensor:
+  - platform: status
+    id: api_connected_bs
+    name: Hálózat
+    on_state:
+      - lvgl.label.update:
+          id: lvgl_label_info_disp_api_connected
+          text: !lambda 'return std::string(x ? "Yes" : "No");'
+
   - platform: template
     name: ${friendly_name_evse} Pending authorization
     id: evse_pendauth
@@ -802,27 +821,8 @@ text_sensor:
 
       - lvgl.label.update:
           id: lvgl_label_info_statusmsg
-          # text: !lambda |-
-            # return x.c_str() + " (" + id(evse_charging_statusmsg).state + ")";
           text: !lambda |-
-            static char buf[32];
-            std::string mesg;
-            mesg = x.c_str();
-            if (0 == x.compare(std::string{"A"})) {
-                mesg = mesg + " (EV not connected)";
-            } else if (0 == x.compare(std::string{"B1"}) or 0 == x.compare(std::string{"B2"})) {
-                mesg = mesg + " (EV connected)";
-            } else if (0 == x.compare(std::string{"C1"}) or 0 == x.compare(std::string{"C2"})) {
-                mesg = mesg + " (Charging)";
-            } else if (0 == x.compare(std::string{"D1"}) or 0 == x.compare(std::string{"D2"})) {
-                mesg = mesg + " (Charging with ventilation)";
-            } else if (0 == x.compare(std::string{"E"})) {
-                mesg = mesg + " (No power/shut off)";
-            } else if (0 == x.compare(std::string{"F"})) {
-                mesg = mesg + " (Error)";
-            }
-            snprintf(buf, sizeof(buf), "%s", mesg.c_str());
-            return buf;
+            return x + " (" + id(evse_charging_statusmsg).state + ")";
 
   - platform: template
     name: ${friendly_name_evse} Device name
@@ -1816,4 +1816,30 @@ lvgl:
                                             text_font: montserrat_16
                                             grid_cell_column_pos: 1
                                             grid_cell_row_pos: 5
+                                            grid_cell_x_align: END
+                                        - label:
+                                            text: "Wi-Fi signal level"
+                                            text_font: montserrat_16
+                                            grid_cell_column_pos: 0
+                                            grid_cell_row_pos: 6
+                                            grid_cell_x_align: START
+                                        - label:
+                                            id: lvgl_label_info_disp_wifi_signal_db
+                                            text: "-"
+                                            text_font: montserrat_16
+                                            grid_cell_column_pos: 1
+                                            grid_cell_row_pos: 6
+                                            grid_cell_x_align: END
+                                        - label:
+                                            text: "API conneted"
+                                            text_font: montserrat_16
+                                            grid_cell_column_pos: 0
+                                            grid_cell_row_pos: 7
+                                            grid_cell_x_align: START
+                                        - label:
+                                            id: lvgl_label_info_disp_api_connected
+                                            text: "-"
+                                            text_font: montserrat_16
+                                            grid_cell_column_pos: 1
+                                            grid_cell_row_pos: 7
                                             grid_cell_x_align: END
