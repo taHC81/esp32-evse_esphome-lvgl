@@ -673,11 +673,11 @@ binary_sensor:
     name: ${friendly_name_evse} Pending authorization
     id: evse_pendauth
     filters:
-      - delayed_on: 1s
+      - delayed_on: 1500ms
     on_press:
       - if:
           condition:
-            lambda: 'return id(evse_error_code).state = 0;'
+            lambda: 'return id(evse_error_code).state == 0;'
           then:
             - lvgl.widget.show: lvgl_authorize_popup_window
     on_release:
