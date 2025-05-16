@@ -214,6 +214,7 @@ uart:
           if (parse_number(msg, "sesTime.val", num)) publish_if_changed(id(evse_session_time), num);
           if (parse_number(msg, "chTime.val", num)) publish_if_changed(id(evse_charging_time), num);
           if (parse_number(msg, "power.val", num)) publish_if_changed(id(evse_power), num);
+          if (parse_number(msg, "consum.val", num)) publish_if_changed(id(evse_session_consumption), num);
           if (parse_number(msg, "totConsum.val", num)) publish_if_changed(id(evse_total_consumption), num);
           if (parse_number(msg, "vltL1.val", num, 100.0f)) publish_if_changed(id(evse_voltage_l1), num);
           if (parse_number(msg, "vltL2.val", num, 100.0f)) publish_if_changed(id(evse_voltage_l2), num);
@@ -482,13 +483,26 @@ sensor:
 
   - platform: template
     name: ${friendly_name_evse} Energy consumption
-    id: evse_total_consumption
+    id: evse_session_consumption
     update_interval: never
     device_class: energy
     unit_of_measurement: Wh
     on_value:
       - lvgl.label.update:
           id: lvgl_label_charging_energy_consumed
+          text:
+            format: "%.1f kWh"
+            args: [ 'x / 1000' ]
+
+  - platform: template
+    name: ${friendly_name_evse} Energy total consumption
+    id: evse_total_consumption
+    update_interval: never
+    device_class: energy
+    unit_of_measurement: Wh
+    on_value:
+      - lvgl.label.update:
+          id: lvgl_label_info_total_energy
           text:
             format: "%.1f kWh"
             args: [ 'x / 1000' ]
@@ -1507,7 +1521,20 @@ lvgl:
                                             grid_cell_row_pos: 0
                                             grid_cell_x_align: END
                                         - label:
-                                            text: "Temperature"
+                                            text: "Total energy charged"
+                                            text_font: font_kis
+                                            grid_cell_column_pos: 0
+                                            grid_cell_row_pos: 1
+                                            grid_cell_x_align: START
+                                        - label:
+                                            id: lvgl_label_info_total_energy
+                                            text: "- kWh"
+                                            text_font: font_kis
+                                            grid_cell_column_pos: 1
+                                            grid_cell_row_pos: 1
+                                            grid_cell_x_align: END
+                                        - label:
+                                            text: "Temperature high"
                                             text_font: montserrat_16
                                             grid_cell_column_pos: 0
                                             grid_cell_row_pos: 1
