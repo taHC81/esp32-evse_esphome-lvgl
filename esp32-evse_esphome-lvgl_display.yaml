@@ -338,7 +338,7 @@ sensor:
             return format_duration(total);
 
   - platform: wifi_signal 
-    name: WiFi jelerősség
+    name: WiFi signal
     id: wifi_signal_db
     entity_category: "diagnostic"
     on_value:
@@ -478,7 +478,7 @@ sensor:
           id: lvgl_label_charging_power
           text:
             format: "%.1f kW"
-            args: [ 'x' ]
+            args: [ 'x / 1000' ]
 
   - platform: template
     name: ${friendly_name_evse} Energy consumption
@@ -491,7 +491,7 @@ sensor:
           id: lvgl_label_charging_energy_consumed
           text:
             format: "%.1f kWh"
-            args: [ 'x' ]
+            args: [ 'x / 1000' ]
 
   - platform: template
     name: ${friendly_name_evse} L1 voltage
