@@ -834,18 +834,24 @@ text_sensor:
                 mesg = "Charging";
             } else if (0 == x.compare(std::string{"D1"}) or 0 == x.compare(std::string{"D2"})) {
                 mesg = "Charging with ventilation";
-            } else if (0 == x.compare(std::string{"E"})) {
-                mesg = "No power/shut off";
-            } else if (0 == x.compare(std::string{"F"})) {
+            } else if (0 == x.compare(std::string{"E"}) or 0 == x.compare(std::string{"F"})) {
                 mesg = "Error";
             }
             snprintf(buf, sizeof(buf), "%s", mesg.c_str());
             return buf;
-
       - lvgl.label.update:
           id: lvgl_label_info_statusmsg
           text: !lambda |-
             return x + " (" + id(evse_charging_statusmsg).state + ")";
+      - if:
+          condition:
+            lambda: 'return (0 != x.compare(std::string{"A"}));'
+          then:
+            - lvgl.resume:
+            - lvgl.widget.redraw:
+            - light.turn_on:
+                id: display_backlight
+                transition_length: 300ms
 
   - platform: template
     name: ${friendly_name_evse} Device name
