@@ -1597,14 +1597,14 @@ lvgl:
                                             grid_cell_x_align: END
                                         - label:
                                             text: "Total energy charged"
-                                            text_font: font_kis
+                                            text_font: montserrat_16
                                             grid_cell_column_pos: 0
                                             grid_cell_row_pos: 1
                                             grid_cell_x_align: START
                                         - label:
                                             id: lvgl_label_info_total_energy
                                             text: "- kWh"
-                                            text_font: font_kis
+                                            text_font: montserrat_16
                                             grid_cell_column_pos: 1
                                             grid_cell_row_pos: 1
                                             grid_cell_x_align: END
