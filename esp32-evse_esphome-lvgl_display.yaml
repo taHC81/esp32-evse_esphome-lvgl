@@ -1519,7 +1519,7 @@ lvgl:
                           max_value: 100
                           on_release:
                             - light.turn_on:
-                                id: backlight
+                                id: display_backlight
                                 brightness: !lambda return x/100;
                           on_value:
                             - lvgl.label.update:
