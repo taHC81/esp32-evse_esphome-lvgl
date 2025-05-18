@@ -1121,7 +1121,7 @@ number:
                 return "not set";
             } else {
                 static char buf[10];
-                snprintf(buf, sizeof(buf), "%.0fmp.", x);
+                snprintf(buf, sizeof(buf), "%.0fs.", x);
                 return buf;
             }
 
@@ -1612,79 +1612,79 @@ lvgl:
                                             text: "Temperature high"
                                             text_font: montserrat_16
                                             grid_cell_column_pos: 0
-                                            grid_cell_row_pos: 1
+                                            grid_cell_row_pos: 2
                                             grid_cell_x_align: START
                                         - label:
                                             id: lvgl_label_info_temp
                                             text: "- °C"
                                             text_font: montserrat_16
                                             grid_cell_column_pos: 1
-                                            grid_cell_row_pos: 1
+                                            grid_cell_row_pos: 2
                                             grid_cell_x_align: END
                                         - label:
                                             text: "Uptime"
                                             text_font: montserrat_16
                                             grid_cell_column_pos: 0
-                                            grid_cell_row_pos: 2
+                                            grid_cell_row_pos: 3
                                             grid_cell_x_align: START
                                         - label:
                                             id: lvgl_label_info_uptime
                                             text: "- s"
                                             text_font: montserrat_16
                                             grid_cell_column_pos: 1
-                                            grid_cell_row_pos: 2
+                                            grid_cell_row_pos: 3
                                             grid_cell_x_align: END
                                         - label:
                                             text: "Version"
                                             text_font: montserrat_16
                                             grid_cell_column_pos: 0
-                                            grid_cell_row_pos: 3
+                                            grid_cell_row_pos: 4
                                             grid_cell_x_align: START
                                         - label:
                                             id: lvgl_label_info_fwevse
                                             text: "-"
                                             text_font: montserrat_16
                                             grid_cell_column_pos: 1
-                                            grid_cell_row_pos: 3
+                                            grid_cell_row_pos: 4
                                             grid_cell_x_align: END
                                         - label:
                                             text: "IP address"
                                             text_font: montserrat_16
                                             grid_cell_column_pos: 0
-                                            grid_cell_row_pos: 4
+                                            grid_cell_row_pos: 5
                                             grid_cell_x_align: START
                                         - label:
                                             id: lvgl_label_info_ipevse
                                             text: "-.-.-.-"
                                             text_font: montserrat_16
                                             grid_cell_column_pos: 1
-                                            grid_cell_row_pos: 4
+                                            grid_cell_row_pos: 5
                                             grid_cell_x_align: END
                                         - label:
                                             text: "Heap"
                                             text_font: montserrat_16
                                             grid_cell_column_pos: 0
-                                            grid_cell_row_pos: 5
+                                            grid_cell_row_pos: 6
                                             grid_cell_x_align: START
                                         - label:
                                             id: lvgl_label_info_heapevse
                                             text: "-"
                                             text_font: montserrat_16
                                             grid_cell_column_pos: 1
-                                            grid_cell_row_pos: 5
+                                            grid_cell_row_pos: 6
                                             grid_cell_x_align: END
                                         - label:
                                             text: "Heap max"
                                             text_font: montserrat_16
                                             grid_cell_column_pos: 0
-                                            grid_cell_row_pos: 6
+                                            grid_cell_row_pos: 7
                                             grid_cell_x_align: START
                                         - label:
                                             id: lvgl_label_info_heapevse_max
                                             text: "-"
                                             text_font: montserrat_16
                                             grid_cell_column_pos: 1
-                                            grid_cell_row_pos: 6
+                                            grid_cell_row_pos: 7
                                             grid_cell_x_align: END
                             - name: "Status"
                               text_align: CENTER
