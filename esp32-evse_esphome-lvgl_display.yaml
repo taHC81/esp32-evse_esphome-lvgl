@@ -495,6 +495,7 @@ sensor:
     id: evse_session_consumption
     update_interval: never
     device_class: energy
+    state_class: total_increasing
     unit_of_measurement: Wh
     on_value:
       - lvgl.label.update:
@@ -508,6 +509,7 @@ sensor:
     id: evse_total_consumption
     update_interval: never
     device_class: energy
+    state_class: total
     unit_of_measurement: Wh
     on_value:
       - lvgl.label.update:
