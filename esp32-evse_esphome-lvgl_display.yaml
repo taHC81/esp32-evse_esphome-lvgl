@@ -261,63 +261,91 @@ globals:
 script:
   - id: nextion_subscribe
     then:
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'u','n','s','u','b', 0xFF, 0xFF, 0xFF});
       - delay: 2s
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','s','t','a','t','e', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','e','n', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','e','r','r', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','p','e','n','d','A','u','t','h', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','l','i','m','R','e','a','c','h', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','m','a','x','C','h','C','u','r', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','c','h','C','u','r', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','s','e','s','T','i','m','e', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','c','h','T','i','m','e', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','p','o','w','e','r', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','c','o','n','s','u','m', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','t','o','t','C','o','n','s','u','m', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','v','l','t','L','1', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','v','l','t','L','2', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','v','l','t','L','3', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','c','u','r','L','1', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','c','u','r','L','2', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','c','u','r','L','3', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','c','o','n','s','u','m','L','i','m', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','c','h','T','i','m','e','L','i','m', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','u','P','o','w','e','r','L','i','m', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','d','e','v','N','a','m','e', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','u','p','t','i','m','e', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','t','e','m','p', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','i','p', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','a','p','p','V','e','r', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','h','e','a','p', 0xFF, 0xFF, 0xFF});
+      - delay: 10ms
       - uart.write: !lambda |-
           return std::vector<uint8_t>({'s','u','b',' ','m','a','x','H','e','a','p', 0xFF, 0xFF, 0xFF});
 
@@ -828,16 +856,16 @@ text_sensor:
             static char buf[32];
             std::string mesg;
             mesg = x.c_str();
-            if (0 == x.compare(std::string{"A"})) {
-                mesg = "EV not connected";
-            } else if (0 == x.compare(std::string{"B1"}) or 0 == x.compare(std::string{"B2"})) {
-                mesg = "EV connected";
-            } else if (0 == x.compare(std::string{"C1"}) or 0 == x.compare(std::string{"C2"})) {
-                mesg = "Charging";
-            } else if (0 == x.compare(std::string{"D1"}) or 0 == x.compare(std::string{"D2"})) {
-                mesg = "Charging with ventilation";
-            } else if (0 == x.compare(std::string{"E"}) or 0 == x.compare(std::string{"F"})) {
-                mesg = "Error";
+            if (x == "A") {
+              mesg = "EV not connected";
+            } else if (x == "B1" || x == "B2") {
+              mesg = "EV connected";
+            } else if (x == "C1" || x == "C2") {
+              mesg = "Charging";
+            } else if (x == "D1" || x == "D2") {
+              mesg = "Charging with ventilation";
+            } else if (x == "E" || x == "F") {
+              mesg = "Error";
             }
             snprintf(buf, sizeof(buf), "%s", mesg.c_str());
             return buf;
