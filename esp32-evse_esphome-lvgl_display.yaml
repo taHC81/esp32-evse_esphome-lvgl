@@ -1,7 +1,7 @@
 substitutions:
-  device_name: esp32-evse-display
-  friendly_name: "ESP32-EVSE Display"
-  friendly_name_evse: "EVSE 1"
+  device_name: esp32-evse
+  friendly_name: "Display"
+  friendly_name_evse: "Charge controller"
   device_description: "Guition JC3248w535"
 
 esphome:
@@ -351,7 +351,7 @@ script:
 
 sensor:
   - platform: uptime
-    name: ${friendly_name} uptime
+    name: ${friendly_name} Uptime
     disabled_by_default: false
     on_value:
       - lvgl.label.update:
@@ -376,7 +376,7 @@ sensor:
             return format_duration(total);
 
   - platform: wifi_signal 
-    name: WiFi signal
+    name: ${friendly_name} WiFi signal
     id: wifi_signal_db
     entity_category: "diagnostic"
     on_value:
@@ -388,7 +388,7 @@ sensor:
 
   - platform: debug
     free:
-      name: "${friendly_name} Heap Free"
+      name: ${friendly_name} Heap Free
       on_value:
         - lvgl.label.update:
             id: lvgl_label_info_heapdisp_free
@@ -396,7 +396,7 @@ sensor:
               format: "%.0f B"
               args: [ 'x' ]
     block:
-      name: "${friendly_name} Heap Max Block"
+      name: ${friendly_name} Heap Max Block
       on_value:
         - lvgl.label.update:
             id: lvgl_label_info_heapdisp_max
@@ -404,7 +404,7 @@ sensor:
               format: "%.0f B"
               args: [ 'x' ]
     loop_time:
-      name: "${friendly_name} Loop Time"
+      name: ${friendly_name} Loop Time
       on_value:
         - lvgl.label.update:
             id: lvgl_label_info_disploop
@@ -923,11 +923,11 @@ text_sensor:
 
 button:
   - platform: restart
-    name: ${friendly_name} vezérlő újraindítás
+    name: ${friendly_name} reboot
   - platform: factory_reset
-    name: ${friendly_name} vezérlő gyári reset
+    name: ${friendly_name} factory reset
   - platform: safe_mode
-    name: ${friendly_name} vezérlő széfmód
+    name: ${friendly_name} safe mode
 
   - platform: template
     name: ${friendly_name_evse} Authorize charging
@@ -1128,7 +1128,7 @@ number:
             }
 
   - platform: template
-    name: ${friendly_name_evse} Display sleep time
+    name: ${friendly_name} Display sleep time
     icon: mdi:receipt-clock-outline
     optimistic: true
     entity_category: "config"
