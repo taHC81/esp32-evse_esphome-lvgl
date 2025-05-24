@@ -4,6 +4,8 @@
 This is a replacement Human-Machine Interface for the Nextion screen of the excellent [ESP32-EVSE project by Miroslav Dzúrik](https://github.com/dzurikmiroslav/esp32-evse).
 It is a plug and play replacement, as it relies on the original Nextion protocol implemented by the author. _Note:_ It doesn't implement the entire Nextion protocol, just the subset required by the EVSE.
 
+![Screen](images/esp32-evse_esphome-lvgl.gif)
+
 ESPHome supports [LVGL graphics library](https://esphome.io/components/lvgl/). Using ESPHome as a framework instead of trying to implement LVGL natively has the advantage that besides making it a lot more simpler to configure, it brings in all the modularity of the ecosystem: 
 - any graphical UI can be rendered via LVGL, with fully open source resources (no proprietary editor needed), just edit a YAML file
 - multiple UARTs can be configured (eg one talking to `esp32-evse`, other talking to smart meter or inverter etc.)
@@ -24,18 +26,11 @@ What makes this a good choice is:
 
 Any other ESPHome supported graphical display could be used, the config file needs to be adjusted accordingly. If the resolution differs, placement of the widgets, font sizes may need correction too.
 
-## Screenshots
-
-![Screen](images/esp32-evse_esphome-lvgl_charging.png) ![Screen](images/esp32-evse_esphome-lvgl_session.png)
-![Screen](images/esp32-evse_esphome-lvgl_settings.png) ![Screen](images/esp32-evse_esphome-lvgl_info-status.png)
-![Screen](images/esp32-evse_esphome-lvgl_info-about.png) ![Screen](images/esp32-evse_esphome-lvgl_info-display.png)
-
 ## Preparation
 
 The display communicates with ESP32-EVSE via UART at 19600 baud rate. Enter your ESP32-EVSE web UI and in _Settings_ > _Serial_, select for the UART port _Mode_: _Nextion display_ and _Baud rate_: _19600_ then press Submit.
 
 ## Installation
-
 
 If you're not familiar yet with ESPHome, check out their [Getting Started guide](https://esphome.io/guides/getting_started_hassio). I recommend to use their Dashboard.
 Place the ready-made _esp32-evse_esphome-lvgl_display.yaml_ configuration file from this repo in ESPHome's config directory. Create your own `secrets.yaml` file in the same directory with your own data:
