@@ -81,32 +81,27 @@ light:
           value: !lambda return (int(id(display_backlight).remote_values.get_brightness() * 100));
 
 display:
-  - platform: qspi_dbi
+  - platform: mipi_spi
     id: my_display
-    model: axs15231
-    data_rate: 40MHz
-    spi_id: display_qspi
-    dimensions:
-      width: 320
-      height: 480
-    cs_pin:
-      number: 45
-      ignore_strapping_warning: true
+    model: jc3248w535
     rotation: 90
-    auto_clear_enabled: false
 
 touchscreen:
   - platform: axs15231
     id: my_touch
     display: my_display
-    i2c_id: touchscreen_bus
+    update_interval: 30ms
+    interrupt_pin: #GPIO3
+      number: 3
+      ignore_strapping_warning: true
     calibration:
       x_min: 0
-      x_max: 461
+      x_max: 479
       y_min: 0
-      y_max: 310
+      y_max: 319
     transform:
       swap_xy: true
+      mirror_x: false
       mirror_y: true
     on_release:
       - if:
@@ -824,6 +819,21 @@ binary_sensor:
           id: lvgl_label_info_temp_fault
           text: !lambda 'return std::string(x ? "Error" : "OK");'
 
+mapping:
+  - id: j1772_state_map
+    from: string
+    to: string
+    entries:
+      A: EV not connected
+      B1: EV connected
+      B2: EV connected
+      C1: Charging
+      C2: Charging
+      D1: Charging with ventilation
+      D2: Charging with ventilation
+      E: Connection error
+      F: Error
+
 text_sensor:
   - platform: wifi_info
     ip_address:
@@ -852,30 +862,14 @@ text_sensor:
     on_value:
       - text_sensor.template.publish:
           id: evse_charging_statusmsg
-          state: !lambda |-
-            static char buf[32];
-            std::string mesg;
-            mesg = x.c_str();
-            if (x == "A") {
-              mesg = "EV not connected";
-            } else if (x == "B1" || x == "B2") {
-              mesg = "EV connected";
-            } else if (x == "C1" || x == "C2") {
-              mesg = "Charging";
-            } else if (x == "D1" || x == "D2") {
-              mesg = "Charging with ventilation";
-            } else if (x == "E" || x == "F") {
-              mesg = "Error";
-            }
-            snprintf(buf, sizeof(buf), "%s", mesg.c_str());
-            return buf;
+          state: !lambda return id(j1772_state_map)[x];
       - lvgl.label.update:
           id: lvgl_label_info_statusmsg
           text: !lambda |-
-            return x + " (" + id(evse_charging_statusmsg).state + ")";
+            return x + " (" + id(j1772_state_map)[x] + ")";
       - if:
           condition:
-            lambda: 'return (0 != x.compare(std::string{"A"}));'
+            lambda: 'return (x != "A");'
           then:
             - lvgl.resume:
             - lvgl.widget.redraw:
