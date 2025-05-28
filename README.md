@@ -32,7 +32,7 @@ The display communicates with ESP32-EVSE via UART at 19600 baud rate. Enter your
 
 ## Installation
 
-If you're not familiar yet with ESPHome, check out their [Getting Started guide](https://esphome.io/guides/getting_started_hassio). I recommend to use their Dashboard.
+If you're not familiar yet with ESPHome, check out their [Getting Started guide](https://esphome.io/guides/getting_started_hassio). You need at least version 2025.5. I recommend to use their Dashboard.
 Place the ready-made _esp32-evse_esphome-lvgl_display.yaml_ configuration file from this repo in ESPHome's config directory. Create your own `secrets.yaml` file in the same directory with your own data:
 ```yaml
 wifi_ssid: YOUR_WIFI_SSID
