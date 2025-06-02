@@ -30,7 +30,11 @@ Any other ESPHome supported graphical display could be used, the config file nee
 
 The display communicates with ESP32-EVSE via UART at 19600 baud rate. Enter your ESP32-EVSE web UI and in _Settings_ > _Serial_, select for the UART port _Mode_: _Nextion display_ and _Baud rate_: _19200_ then press Submit. Prepare a 4-pin cable with 2.5mm JST to 1.25mm JST ends wired correctly for RX/TX/GND/5V.
 
+Please note that display can't be powered from EVSE board, but EVSE can be powered from this display instead. It's due to Q1 mosfet protection on the display.
+
 ![EVSE display configuration](images/EVSE-display-settings.png)
+![Display connection](images/display-connection.jpg)
+
 ## Installation
 
 If you're not familiar yet with ESPHome, check out their [Getting Started guide](https://esphome.io/guides/getting_started_hassio). You need at least version 2025.5. I recommend to use their Dashboard.
