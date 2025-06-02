@@ -116,7 +116,7 @@ touchscreen:
 uart:
   tx_pin: 43
   rx_pin: 44
-  baud_rate: 19600
+  baud_rate: 19200
   id: nxtn
   debug:
     direction: RX
